@@ -21,31 +21,26 @@
 (set! *warn-on-reflection* true)
 
 
-(def ^:dynamic *library* 'user.java.time)
-(def ^:dynamic *version* (chrono-version/chrono-version-str))
 (def ^:dynamic *target-path* "target")
 (def ^:dynamic ^String *jar-path* "package.jar")
 
 
 (def cli-options
   [["-r" "--library LIBRARY" "Library symbol"
-    :default *library*
     :parse-fn symbol]
    ["-d" "--dir TARGET_DIR" "Package target directory"
     :default *target-path*
     :validate-fn [string? "Target path must be a string"]]
    ["-t" "--version VERSION" "Package version string"
-    :default *version*]
+    :default (chrono-version/chrono-version-str)]
    [nil "--jar-path JAR_FILE" "Package jar file path"
     :default *jar-path*]])
 
 
 (defn package
-  [library version target-path jar-path]
-  (let [library     (or library *library*)
-        version     (or version *version*)
-        target-path (or target-path *target-path*)
-        jar-path    (or jar-path *jar-path*)]
+  [library version]
+  (let [target-path *target-path*
+        jar-path    *jar-path*]
     (time
       (do
         (clean/clean target-path)
@@ -62,11 +57,9 @@
   [& xs]
   (let [{:keys [dir library version jar-path]} (cli/parse-opts xs cli-options)]
     (try
-      (binding [*library*     library
-                *version*     version
-                *target-path* dir
+      (binding [*target-path* dir
                 *jar-path*    jar-path]
-        (package))
+        (package library version))
       (catch Throwable e
         (.printStackTrace e)
         (System/exit 127))

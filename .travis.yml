@@ -40,7 +40,7 @@ jobs:
     - stage: package
       jdk: openjdk8
       env: TESTOPT=""
-      script: clojure -R:1.10 -A:provided:test -m script.package
+      script: clojure -R:1.10 -A:provided:test -m script.package -r user.java.time
       before_cache:
         - mvn dependency:get -Dartifact=org.apache.maven.plugins:maven-deploy-plugin:2.8
       after_success:
