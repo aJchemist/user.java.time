@@ -16,7 +16,7 @@
    :extra-deps
    {
     org.clojure/tools.deps.alpha {:mvn/version "0.8.677"}
-    user.tools.deps.alpha        {:git/url "https://github.com/aJchemist/user.tools.deps.alpha.git" :sha "b471c9964c843fb576e56bf65f54bb3be70ce78f"}
+    user.tools.deps.alpha        {:mvn/version "2020.105.15542"}
     }}
 
 
