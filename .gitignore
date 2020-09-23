@@ -3,3 +3,4 @@
 .ci/deploy-key
 .ci/deploy-key.pub
 .obsolete
+.clj-kondo/.cache

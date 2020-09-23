@@ -1,0 +1,15 @@
+{:linters
+ {:refer-all
+  {:exclude [user.java.time.script.print-chrono-version]}
+  :unresolved-symbol
+  {:exclude [(user.java.time.script.print-chrono-version/chrono-version-str)]}
+
+  :unused-namespace
+  {:exclude [
+             clojure.java.io
+             clojure.java.shell
+             clojure.string
+             clojure.test
+             ]}
+  :unused-referred-var
+  {:exclude {clojure.test [is are deftest testing]}}}}
