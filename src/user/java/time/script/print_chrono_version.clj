@@ -3,7 +3,6 @@
    [clojure.tools.cli :as cli]
    )
   (:import
-   java.time.LocalTime
    java.time.ZonedDateTime
    java.time.ZoneId
    java.time.format.DateTimeFormatter
@@ -25,7 +24,7 @@
   ([]
    (chrono-version-str nil))
   ([fmt]
-   (chrono-version-str nil nil))
+   (chrono-version-str fmt nil))
   ([fmt tz]
    (let [fmt                (or fmt dt-fmt-str)
          tz                 (or tz tz-utc)
